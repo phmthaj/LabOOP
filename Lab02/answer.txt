@@ -1,0 +1,8 @@
+2. Working with method overloading
+- I prefer the array input more.
+3. Passing parameter
+- Java is a pass-by-value language.
+- Because the swap function copy another variable and set it into the value of "Jungle" and "Cinderella". When we print out the result, we use the reference pointer to the original variable (which remains unchanged), therefore the result is the same.
+- Because now we refer the dvd pointer to the new DigitalVideoDisc instance, and set its title as "Cinderella", therefore when we print out the result, we are referring to the new pointer, not the old one.
+6. Open the Cart class
+- The return type should be String because the function toString() in the Object class has the String return type, therefore if we want to Override the method toString(), we have to use the same return type.
