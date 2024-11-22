@@ -1,7 +1,0 @@
-Allen Holub recommends using getters and setters sparingly because they can tightly link classes and make your code harder to change. It’s  better to use parameterized constructors or static factory methods to create and set up objects. Only use accessors when you need to share  details without giving away too much about how things work.
-
-
-
-
-
-
