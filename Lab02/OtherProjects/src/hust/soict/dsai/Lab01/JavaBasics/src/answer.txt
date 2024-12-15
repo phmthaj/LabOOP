@@ -1,0 +1,14 @@
+6.1 answer:
+- If I choose "Cancel" button, it show "You have choose NO".
+- We can customize the options to users:
+int option = JOptionPane.showOptionDialog(
+        null,
+        "Do you want to change to the first class ticket?",
+        "Choose an option",
+        JOptionPane.DEFAULT_OPTION,
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        new String[]{"I do", "I don't"},
+        "I don't"
+);
+JOptionPane.showMessageDialog(null, "You've chosen: " + (option == 0 ? "I do" : "I don't"));

@@ -1,0 +1,67 @@
+- Which classes are aggregates of other classes?
+  Checking all constructors of whole classes if they initialize for their parts?
+
+  1. CompactDisc
+    Aggregate of: Track
+    Constructor Check:
+      - The CompactDisc class contains a list of Track objects (private ArrayList<Track> tracks).
+        The constructor initializes the artist field, but the tracks list is initialized directly at the declaration (new ArrayList<Track>()).
+      - The tracks list is mutable, and new tracks can be added using the addTrack() method.
+  2. Store and Cart
+    Aggregate of: Media (which includes Book, DigitalVideoDisc, and CompactDisc)
+    Constructor Check:
+      - Both Store and Cart contain an ArrayList<Media>, which holds different types of Media objects.
+      - The ArrayList<Media> is initialized directly at the declaration (new ArrayList<Media>()),
+        and the aggregation occurs dynamically through addMedia() methods.
+  3. Disc
+    Superclass Relationship: Disc is a superclass of DigitalVideoDisc and CompactDisc.
+    These subclasses include additional attributes (length, director for DigitalVideoDisc and artist, tracks for CompactDisc)
+     that are not directly initialized in the Disc constructor but are passed through the super() constructor to Media.
+
+
+
+- If the passing object is not an instance of Media, what happens?
+
+  If the passed object to the equals(Object obj) method is not an instance of Media, the method will return false.
+  Because ```if (obj == null || getClass() != obj.getClass()) return false;```
+
+
+
+- What class should implement the Comparable interface?
+
+  The Media class should implement the Comparable interface.
+  Since all media items (DigitalVideoDisc, Book, CompactDisc, etc.) are subclasses of Media,
+  implementing Comparable in the Media class will allow us to define a default ordering for all media types.
+
+
+
+- In those classes, how should you implement the compareTo() method be to reflect the ordering that we want?
+
+  If we choose to order by title first and then by cost:
+  ```
+  @Override
+  public int compareTo(Media other) {
+      int titleComparison = this.title.compareToIgnoreCase(other.title);
+      if (titleComparison != 0) {
+          return titleComparison;
+      } else {
+          return Float.compare(other.cost, this.cost);
+      }
+  }
+  ```
+
+
+
+- Can we have two ordering rules if we use this Comparable interface approach?
+
+  No, with the Comparable interface approach, a class can have only one natural ordering as defined by the compareTo() method.
+  This means that if we implement Comparable in the Media class, we can define only one ordering rule.
+
+
+
+- Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost.
+
+  How would you modify your code to allow this?
+  Modify the Code:
+  The Media class will implement a generic ordering (e.g., by title then cost).
+  The DigitalVideoDisc class will override the compareTo() method to provide a specialized ordering rule.
